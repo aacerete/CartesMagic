@@ -21,7 +21,7 @@
     <string name="pref_rarity_display_name">Segons rarity</string>
     <string name="pref_colors_display_name">Segons color</string>
 
-//Cartes segons rarity
+    //Cartes segons rarity
     <string-array name="pref_rarity_list_titles">
         <item>Common</item>
         <item>Uncommon</item>
@@ -41,7 +41,7 @@
         <item>All</item>
     </string-array>
 
-//segons color
+    //segons color
     <string-array name="pref_colors_list_titles">
         <item>White</item>
         <item>Blue</item>
@@ -105,4 +105,5 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
+    <string name="title_activity_detail">DetailActivity</string>
 </resources>
