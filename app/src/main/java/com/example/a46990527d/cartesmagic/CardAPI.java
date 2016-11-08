@@ -105,6 +105,10 @@ public class CardAPI {
             Carta.setName(objeto.getString("name"));
             Carta.setType(objeto.getString("type"));
             Carta.setRarity(objeto.getString("rarity"));
+            if (objeto.has("text")){
+                Carta.setText(objeto.getString("text"));
+            }
+
             if (objeto.has("colors")) {
                 Carta.setColors(objeto.getString("colors"));
             } else {
