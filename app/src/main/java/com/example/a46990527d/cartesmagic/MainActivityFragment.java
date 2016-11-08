@@ -1,5 +1,6 @@
 package com.example.a46990527d.cartesmagic;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
@@ -65,6 +66,8 @@ public class MainActivityFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 Card card = (Card) adapterView.getItemAtPosition(i);
+
+                Intent intent = new Intent(getContext(), DetailActivity.class);
             }
         });
 
