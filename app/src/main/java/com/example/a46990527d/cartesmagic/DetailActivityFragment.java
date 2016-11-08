@@ -55,6 +55,11 @@ public class DetailActivityFragment extends Fragment {
         tvColors = (TextView) view.findViewById(R.id.tvColors);
         tvText = (TextView) view.findViewById(R.id.tvText);
 
+        tvCardName.setText(card.getName());
+        tvRarity.setText(card.getRarity());
+        tvColors.setText(card.getColors());
+        tvText.setText(card.getText());
+        Glide.with(getContext()).load(card.getImageUrl()).into(ivImage);
 
 
 
