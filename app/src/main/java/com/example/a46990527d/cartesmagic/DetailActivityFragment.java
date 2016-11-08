@@ -30,9 +30,10 @@ public class DetailActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         view = inflater.inflate(R.layout.fragment_detail, container, false);
 
-                Intent i = getActivity().getIntent();
+        Intent i = getActivity().getIntent();
 
                 if (i != null) {
             Card card = (Card) i.getSerializableExtra("card");
@@ -49,7 +50,7 @@ public class DetailActivityFragment extends Fragment {
     private void updateUi(Card card) {
         Log.d("Card", card.toString());
 
-        ivImage = (ImageView) view.findViewById(R.id.ivImatge);
+        ivImage = (ImageView) view.findViewById(R.id.ivImage);
         tvCardName = (TextView) view.findViewById(R.id.tvCardName);
         tvRarity = (TextView) view.findViewById(R.id.tvRarity);
         tvColors = (TextView) view.findViewById(R.id.tvColors);

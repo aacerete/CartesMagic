@@ -70,6 +70,8 @@ public class MainActivityFragment extends Fragment {
 
                 Intent intent = new Intent(getContext(), DetailActivity.class);
                 intent.putExtra("card", card);
+
+                startActivity(intent);
             }
         });
 
