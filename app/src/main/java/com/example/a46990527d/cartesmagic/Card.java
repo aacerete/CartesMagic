@@ -1,5 +1,6 @@
 package com.example.a46990527d.cartesmagic;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -7,7 +8,7 @@ import java.util.Arrays;
  * Created by 46990527d on 18/10/16.
  */
 
-public class Card {
+public class Card implements Serializable {
 
     private String name;
     private String type;

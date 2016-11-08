@@ -21,6 +21,7 @@ import android.widget.ListView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -68,6 +69,7 @@ public class MainActivityFragment extends Fragment {
                 Card card = (Card) adapterView.getItemAtPosition(i);
 
                 Intent intent = new Intent(getContext(), DetailActivity.class);
+                intent.putExtra("card", card);
             }
         });
 
