@@ -15,7 +15,7 @@ public class Card implements Serializable {
     private String colors;
     private String rarity;
     private String imageUrl;
-
+    private String text;
 
     public String getName() {
 
@@ -59,6 +59,14 @@ public class Card implements Serializable {
         this.imageUrl = imageUrl;
     }
 
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
     @Override
     public String toString() {
         return "Card{" +
@@ -67,6 +75,7 @@ public class Card implements Serializable {
                 ", colors='" + colors + '\'' +
                 ", rarity='" + rarity + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
+                ", text='" + text + '\'' +
                 '}';
     }
 }
