@@ -120,23 +120,24 @@ public class MainActivityFragment extends Fragment {
     //metode que s'executara en segon pla i fara la crida a l'api
     private class RefreshDataTask extends AsyncTask<Void, Void, ArrayList<Card>> {
         @Override
+
         protected ArrayList<Card> doInBackground(Void... voids) {
 
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
             String rarity = preferences.getString("rarity", "All");
             String colors = preferences.getString("colors", "All");
 
-            CardAPI api = new CardAPI();
+            //CardAPI api = new CardAPI();
             ArrayList <Card> result = null;
 
             if (rarity.equals("All") && colors.equals("All")){
-                result = api.getCards();
+                result = CardAPI.getCards();
             }else if (rarity.equalsIgnoreCase("All") && colors.equalsIgnoreCase(colors)){
-                result = api.getCardsByColor(colors);
+                result = CardAPI.getCardsByColor(colors);
             }else if (rarity.equalsIgnoreCase(rarity) && colors.equalsIgnoreCase("All")) {
-                result = api.getCardsByRarity(rarity);
+                result = CardAPI.getCardsByRarity(rarity);
             }else if (rarity.equalsIgnoreCase(rarity) && colors.equalsIgnoreCase(colors)){
-                 result = api.getCardsByColorAndRarity(rarity,colors);
+                 result = CardAPI.getCardsByColorAndRarity(rarity,colors);
 
             }
             Log.d("DEBUG", result != null ? result.toString() : null);

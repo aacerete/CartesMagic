@@ -18,9 +18,9 @@ import java.util.Arrays;
 
 public class CardAPI {
 
-    private final String BASE_URL = "https://api.magicthegathering.io/v1";
+    private static final String BASE_URL = "https://api.magicthegathering.io/v1";
 
-    public ArrayList<Card> getCardsByColor (String colors){
+    public static ArrayList<Card> getCardsByColor (String colors){
         Uri builtUri = Uri.parse(BASE_URL)
                 .buildUpon()
                 .appendPath("cards")
@@ -30,7 +30,7 @@ public class CardAPI {
         return CridaApi(builtUri);
     }
 
-    public ArrayList<Card> getCardsByRarity (String rarity){
+    public static ArrayList<Card> getCardsByRarity (String rarity){
 
         Uri builtUri = Uri.parse(BASE_URL)
                 .buildUpon()
@@ -41,7 +41,7 @@ public class CardAPI {
         return CridaApi(builtUri);
     }
 
-    public ArrayList<Card> getCardsByColorAndRarity (String rarity, String colors) {
+    public static ArrayList<Card> getCardsByColorAndRarity (String rarity, String colors) {
 
         Uri builtUri = Uri.parse(BASE_URL)
                 .buildUpon()
@@ -55,7 +55,7 @@ public class CardAPI {
     }
 
 
-    public ArrayList<Card> getCards() {
+    public static ArrayList<Card> getCards() {
         Uri builtUri = Uri.parse(BASE_URL)
                 .buildUpon()
                 .appendPath("cards")
@@ -66,7 +66,7 @@ public class CardAPI {
 
     }
 
-    public ArrayList <Card> CridaApi  ( Uri builtUri ){
+    public static ArrayList <Card> CridaApi  ( Uri builtUri ){
 
         try {
             String url = builtUri.toString();
@@ -86,7 +86,7 @@ public class CardAPI {
     }
 
     // A partir de l'String , el convertim a un objecte JSON per poder tractar-lo
-    public JSONObject TratarStringRespuesta(String respuesta) throws JSONException {
+    public static JSONObject TratarStringRespuesta(String respuesta) throws JSONException {
 
         JSONObject obj = new JSONObject(respuesta);
 
@@ -94,7 +94,7 @@ public class CardAPI {
     }
 
     //a Partir de l'objecte JSON rebut (que conte Cards amb Totes les cartes juntes), alimentem el nostre arraylist Card per a interactuar mes endavant
-    public ArrayList<Card> ConvertirEnCarta(JSONObject cartas) throws JSONException {
+    public static ArrayList<Card> ConvertirEnCarta(JSONObject cartas) throws JSONException {
 
         ArrayList<Card> cards = new ArrayList<>();
         JSONArray JSONCards = cartas.getJSONArray("cards");
