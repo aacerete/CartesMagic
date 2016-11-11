@@ -57,17 +57,14 @@ public class DetailActivityFragment extends Fragment {
     private void updateUi(Card card) {
         Log.d("Card", card.toString());
 
-        ivImage = (ImageView) view.findViewById(R.id.ivImage);
-        tvCardName = (TextView) view.findViewById(R.id.tvCardName);
-        tvRarity = (TextView) view.findViewById(R.id.tvRarity);
-        tvColors = (TextView) view.findViewById(R.id.tvColors);
-        tvText = (TextView) view.findViewById(R.id.tvText);
+        binding.tvText.setText(card.getText());
+        binding.tvColors.setText(card.getColors());
+        binding.tvCardName.setText(card.getName());
+        binding.tvRarity.setText(card.getRarity());
+        Glide.with(getContext()).load(card.getImageUrl()).into(binding.ivImage);
 
-        tvCardName.setText(card.getName());
-        tvRarity.setText(card.getRarity());
-        tvColors.setText(card.getColors());
-        tvText.setText(card.getText());
-        Glide.with(getContext()).load(card.getImageUrl()).into(ivImage);
+
+
 
 
 
