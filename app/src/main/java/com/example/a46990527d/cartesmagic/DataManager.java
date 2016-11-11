@@ -17,7 +17,12 @@ public class DataManager {
     private static UriHelper URI_HELPER = UriHelper.with(CartesMagicContentProvider.AUTHORITY);
     private static Uri CARD_URI = URI_HELPER.getUri(Card.class);
 
-            static void saveCards(ArrayList<Card> cartes, Context context) {
+    static void saveCards(ArrayList<Card> cartes, Context context) {
         cupboard().withContext(context).put(CARD_URI, Card.class, cartes);
-     }
+    }
+
+    static void deleteCards (Context context){
+        cupboard().withContext(context).delete(CARD_URI, "_id > ?", "1");
+
+    }
 }
