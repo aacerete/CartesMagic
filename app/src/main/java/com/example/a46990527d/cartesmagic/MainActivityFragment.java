@@ -132,7 +132,7 @@ public class MainActivityFragment extends Fragment {
             String rarity = preferences.getString("rarity", "All");
             String colors = preferences.getString("colors", "All");
 
-            //CardAPI api = new CardAPI();
+
             ArrayList <Card> result = null;
 
             if (rarity.equals("All") && colors.equals("All")){
@@ -147,9 +147,7 @@ public class MainActivityFragment extends Fragment {
             }
             Log.d("DEBUG", result != null ? result.toString() : null);
 
-            UriHelper helper = UriHelper.with(CartesMagicContentProvider.AUTHORITY);
-            Uri cardUri = helper.getUri(Card.class);
-            cupboard().withContext(getContext()).put(cardUri, Card.class, result);
+            DataManager.saveCards(result,getContext());
 
             return null;
         }
