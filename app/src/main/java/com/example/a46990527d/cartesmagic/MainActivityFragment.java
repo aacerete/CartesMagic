@@ -1,10 +1,11 @@
 package com.example.a46990527d.cartesmagic;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
+
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
@@ -20,28 +21,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+
 
 import com.example.a46990527d.cartesmagic.databinding.FragmentMainBinding;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 
-import nl.littlerobots.cupboard.tools.provider.UriHelper;
 
-import static nl.qbusict.cupboard.CupboardFactory.cupboard;
+
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class MainActivityFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
-
+    private ProgressDialog dialog;
     private CardsCursorAdapter adapter;
 
     public MainActivityFragment() {
@@ -62,10 +57,10 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
         FragmentMainBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container,false);
             View view = binding.getRoot();
 
-
-
-
         adapter = new CardsCursorAdapter(getContext(),Card.class);
+
+        dialog = new ProgressDialog(getContext());
+        dialog.setMessage("Cargando");
 
         binding.lvCartes.setAdapter(adapter);
 
@@ -140,8 +135,15 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
 
     //metode que s'executara en segon pla i fara la crida a l'api
     private class RefreshDataTask extends AsyncTask<Void, Void, Void> {
-        @Override
 
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            dialog.show();
+        }
+
+        @Override
         protected Void doInBackground(Void... voids) {
 
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -167,6 +169,13 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
             DataManager.saveCards(result,getContext());
 
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            dialog.dismiss();
         }
     }
 }
