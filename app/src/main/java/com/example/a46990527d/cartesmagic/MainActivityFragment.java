@@ -3,6 +3,7 @@ package com.example.a46990527d.cartesmagic;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
@@ -27,6 +28,10 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import nl.littlerobots.cupboard.tools.provider.UriHelper;
+
+import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -118,10 +123,10 @@ public class MainActivityFragment extends Fragment {
     }
 
     //metode que s'executara en segon pla i fara la crida a l'api
-    private class RefreshDataTask extends AsyncTask<Void, Void, ArrayList<Card>> {
+    private class RefreshDataTask extends AsyncTask<Void, Void, Void> {
         @Override
 
-        protected ArrayList<Card> doInBackground(Void... voids) {
+        protected Void doInBackground(Void... voids) {
 
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
             String rarity = preferences.getString("rarity", "All");
@@ -142,15 +147,11 @@ public class MainActivityFragment extends Fragment {
             }
             Log.d("DEBUG", result != null ? result.toString() : null);
 
-            return result;
-        }
+            UriHelper helper = UriHelper.with(CartesMagicContentProvider.AUTHORITY);
+            Uri cardUri = helper.getUri(Card.class);
+            cupboard().withContext(getContext()).put(cardUri, Card.class, result);
 
-        @Override
-        protected void onPostExecute(ArrayList<Card> respuesta) {
-            if (respuesta != null) {
-                adapter.clear();
-                adapter.addAll(respuesta);
-            }
+            return null;
         }
     }
 }
