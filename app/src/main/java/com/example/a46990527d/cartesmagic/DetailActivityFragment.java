@@ -9,8 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import android.databinding.DataBindingUtil;
 import com.bumptech.glide.Glide;
+import com.example.a46990527d.cartesmagic.databinding.FragmentDetailBinding;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -24,6 +25,11 @@ public class DetailActivityFragment extends Fragment {
     private TextView tvText;
     private ImageView ivImage;
 
+    private FragmentDetailBinding binding;
+
+
+
+
     public DetailActivityFragment() {
     }
 
@@ -31,7 +37,8 @@ public class DetailActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.fragment_detail, container, false);
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_detail, container, false);
+        View view = binding.getRoot();
 
         Intent i = getActivity().getIntent();
 

@@ -2,6 +2,7 @@ package com.example.a46990527d.cartesmagic;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.databinding.DataBindingUtil;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
@@ -17,6 +18,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.example.a46990527d.cartesmagic.databinding.FragmentMainBinding;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,9 +50,9 @@ public class MainActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        ListView lvCartes = (ListView) view.findViewById(R.id.lvCartes);
+        FragmentMainBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container,false);
+            View view = binding.getRoot();
 
 
         items = new ArrayList<>();
@@ -60,9 +63,9 @@ public class MainActivityFragment extends Fragment {
                 items
         );
 
-        lvCartes.setAdapter(adapter);
+        binding.lvCartes.setAdapter(adapter);
 
-        lvCartes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        binding.lvCartes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
