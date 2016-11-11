@@ -39,7 +39,7 @@ import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 public class MainActivityFragment extends Fragment {
 
     private ArrayList<Card> items;
-    private AdaptadorCartas adapter;
+    private CardsCursorAdapter adapter;
 
     public MainActivityFragment() {
     }
@@ -62,11 +62,7 @@ public class MainActivityFragment extends Fragment {
 
         items = new ArrayList<>();
 
-        adapter = new AdaptadorCartas(
-                getContext(),
-                R.layout.lv_cartes_row,
-                items
-        );
+        adapter = new CardsCursorAdapter(getContext(),Card.class);
 
         binding.lvCartes.setAdapter(adapter);
 
