@@ -1,7 +1,10 @@
 package com.example.a46990527d.cartesmagic;
 
 import com.bumptech.glide.Glide;
+import com.example.a46990527d.cartesmagic.databinding.LvCartesRowBinding;
+
 import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,33 +29,27 @@ public class AdaptadorCartas extends ArrayAdapter<Card> {
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
+
         Card carta = getItem(position);
+
+        LvCartesRowBinding binding = null;
 
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.lv_cartes_row, parent, false);
+            binding = DataBindingUtil.inflate(inflater,R.layout.lv_cartes_row, parent, false);
+        }else{
+            binding = DataBindingUtil.getBinding(convertView);
         }
 
-        TextView nombre = (TextView) convertView.findViewById(R.id.tvName);
-        nombre.setText(carta.getName());
 
-        TextView type = (TextView) convertView.findViewById(R.id.tvType);
-        type.setText(carta.getType());
+        binding.tvName.setText(carta.getName());
+        binding.tvRarity.setText(carta.getRarity());
+        binding.tvColors.setText(carta.getColors());
+        binding.tvType.setText(carta.getType());
+        Glide.with(getContext()).load(carta.getImageUrl()).into(binding.ivImatge);
 
-        TextView rarity = (TextView) convertView.findViewById(R.id.tvRarity);
-        rarity.setText(carta.getRarity());
-
-        TextView colors = (TextView) convertView.findViewById(R.id.tvColors);
-        colors.setText(carta.getColors());
-
-        ImageView image = (ImageView) convertView.findViewById(R.id.ivImatge);
-        Glide.with(getContext()).load(carta.getImageUrl()).into(image);
-
-
-
-
-
-        return convertView;
+         return binding.getRoot();
 
     }
 }
